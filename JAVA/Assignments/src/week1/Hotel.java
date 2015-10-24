@@ -16,7 +16,6 @@ public Hotel() {
 public Hotel(String name, String location) {
 	Hotel.name = name;
 	Hotel.location = location;
-	this.numOfRooms = 0;
 	this.rooms = new Room[10];
 }
 
@@ -55,10 +54,12 @@ public void addReservation(String occupantName, char smoking, String bedType){
 }
 
 public void cancelReservation(String occupantName){
-	if(findReservation(occupantName) == -1)
+	int index = findReservation(occupantName);
+	if(index == -1)
 		System.out.println("Sorry reservation not found");
 	else{
-		rooms[findReservation(occupantName)].setOccupied(false);
+		rooms[index].setOccupied(false);
+		rooms[index].setOccupant("Not Occupied");
 		occupiedCnt--;
 		System.out.println("Reservation successfully cancelled");
 	}
@@ -92,13 +93,7 @@ public void getDailySales(){
 }
 
 public int occupanyPercentage(){
-	int occupiedCount = 0;
-	for(Room room: rooms){
-		if(room != null && room.isOccupied()){
-			occupiedCount += 1;
-		}
-	}
-	return (occupiedCount/numOfRooms)*100;
+	return occupiedCnt*100/numOfRooms;
 }
 
 @Override

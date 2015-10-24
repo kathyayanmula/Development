@@ -24,10 +24,13 @@ public class HotelTester {
 		hotel1.getDailySales();
 		System.out.println();
 		hotel1.cancelReservation("maruthi");
+		hotel1.cancelReservation("maruthi");
 		System.out.println();
 		hotel1.printReservationList();
 		System.out.println();
 		hotel1.getDailySales();
+		System.out.println();
+		System.out.println(hotel1.occupanyPercentage());
 
 	}
 
