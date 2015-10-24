@@ -21,6 +21,7 @@ public Room(int roomNum, String bedType, char smoking, double rate) {
 	this.smoking = smoking;
 	this.rate = rate;
 	this.occupied = false;
+	this.occupantName = "Not Occupied";
 }
 
 public int getRoomNum() {
@@ -73,7 +74,7 @@ public void setOccupied(boolean occupied) {
 
 @Override
 public String toString(){
-	return "Room Number: " + this.roomNum + "\nOccupant name: " + this.occupantName + "\nSmoking room: " + this.smoking + "\nBed Type: " + this.bedType + "\nRate: " + this.rate + "\n"; 
+	return "Room Number: " + this.roomNum + "\nOccupant name: " + this.occupantName + "\nSmoking room: " + this.smoking + "\nBed Type: " + this.bedType + "\nRate: " + this.rate; 
 }
 
 

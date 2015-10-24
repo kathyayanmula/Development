@@ -2,8 +2,8 @@ package week1;
 import week1.Room;
 
 public class Hotel {
-	public Room[] rooms;
-	public static String name;
+	private Room[] rooms;
+	private static String name;
 	private static String location;
 	private static int occupiedCnt;
 	private int numOfRooms;
@@ -40,33 +40,33 @@ public void addRoom(int roomNum, String bedType, char smoking, double rate){
 	}
 }
 
-public String addReservation(String occupantName, char smoking, String bedType){
-	
+public void addReservation(String occupantName, char smoking, String bedType){
+	String printOutput = "Reservation was unsuccessful";
 	for(Room room :rooms){
-		if(!room.isOccupied() && room.getSmoking() == smoking && room.getBedType().equals(bedType)){
+		if(room != null && !room.isOccupied() && room.getSmoking() == smoking && room.getBedType().equals(bedType)){
 			room.setOccupant(occupantName);
 			room.setOccupied(true);
 			occupiedCnt++;
-			return "Reservation was successful";
+			printOutput = "Reservation was successful";
 		}
 	}
-	return "Reservation was unsuccessful";
+	System.out.println(printOutput);
 	
 }
 
-public String cancelReservation(String occupantName){
+public void cancelReservation(String occupantName){
 	if(findReservation(occupantName) == -1)
-		return "Sorry reservation not found";
+		System.out.println("Sorry reservation not found");
 	else{
 		rooms[findReservation(occupantName)].setOccupied(false);
 		occupiedCnt--;
-		return "Reservation successfully cancelled";
+		System.out.println("Reservation successfully cancelled");
 	}
 }
 
 public int findReservation(String occupantName){
 	for(int i = 0; i < rooms.length; i++){
-		if(rooms[i].getOccupant().equals(occupantName)){
+		if(rooms[i] != null && rooms[i].getOccupant().equals(occupantName)){
 			return i;
 		}
 	}
@@ -74,26 +74,27 @@ public int findReservation(String occupantName){
 }
 
 public void printReservationList(){
+	System.out.println("Current reservation list:\n");
 	for(Room room: this.rooms){
 		if(room != null && room.isOccupied())
 			System.out.println(room + "\n");			
 	}
 }
 
-public int getDailySales(){
-	int total = 0;
+public void getDailySales(){
+	float total = 0;
 	for(Room room: rooms){
 		if(room != null && room.isOccupied()){
 			total += room.getRoomRate();
 		}
 	}
-	return total;
+	 System.out.println("Today's sales are : " + total);
 }
 
 public int occupanyPercentage(){
 	int occupiedCount = 0;
 	for(Room room: rooms){
-		if(room.isOccupied()){
+		if(room != null && room.isOccupied()){
 			occupiedCount += 1;
 		}
 	}
@@ -102,10 +103,10 @@ public int occupanyPercentage(){
 
 @Override
 public String toString(){
-	 String output  = "Hotel Name : " + Hotel.name + "\nHotel Location : " + Hotel.location + "\nNumber of Rooms : " + this.numOfRooms + " Number of Occupied Rooms : " + Hotel.occupiedCnt + "\n\n";
+	 String output  = "    Hotel Name : " + Hotel.name + "\n    Hotel Location : " + Hotel.location + "\n    Number of Rooms : " + this.numOfRooms + "\n    Number of Occupied Rooms : " + Hotel.occupiedCnt + "\n\n    Room Details are:\n\n";
 	for(Room room :rooms){
 		if(room != null){
-		output  += room.toString();
+		output  += room.toString() + "\n\n";
 		}
 	}
 	return output;
