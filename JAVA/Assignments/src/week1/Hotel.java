@@ -11,12 +11,18 @@ public class Hotel {
 	
 public Hotel() {
 	this.rooms = new Room[10];
+	for(int i=0;i<10;i++){
+		rooms[i] = new Room();
+	}
 }
 
 public Hotel(String name, String location) {
 	Hotel.name = name;
 	Hotel.location = location;
 	this.rooms = new Room[10];
+	for(int i=0;i<10;i++){
+		rooms[i] = new Room();
+	}
 }
 
 public boolean isFull(){
@@ -42,7 +48,7 @@ public void addRoom(int roomNum, String bedType, char smoking, double rate){
 public void addReservation(String occupantName, char smoking, String bedType){
 	String printOutput = "Reservation was unsuccessful";
 	for(Room room :rooms){
-		if(room != null && !room.isOccupied() && room.getSmoking() == smoking && room.getBedType().equals(bedType)){
+		if(!room.isOccupied() && room.getSmoking() == smoking && room.getBedType().equals(bedType)){
 			room.setOccupant(occupantName);
 			room.setOccupied(true);
 			occupiedCnt++;
@@ -67,7 +73,7 @@ public void cancelReservation(String occupantName){
 
 public int findReservation(String occupantName){
 	for(int i = 0; i < rooms.length; i++){
-		if(rooms[i] != null && rooms[i].getOccupant().equals(occupantName)){
+		if(rooms[i].getOccupant().equals(occupantName)){
 			return i;
 		}
 	}
@@ -85,7 +91,7 @@ public void printReservationList(){
 public void getDailySales(){
 	float total = 0;
 	for(Room room: rooms){
-		if(room != null && room.isOccupied()){
+		if(room.isOccupied()){
 			total += room.getRoomRate();
 		}
 	}
@@ -100,7 +106,7 @@ public int occupanyPercentage(){
 public String toString(){
 	 String output  = "    Hotel Name : " + Hotel.name + "\n    Hotel Location : " + Hotel.location + "\n    Number of Rooms : " + this.numOfRooms + "\n    Number of Occupied Rooms : " + Hotel.occupiedCnt + "\n\n    Room Details are:\n\n";
 	for(Room room :rooms){
-		if(room != null){
+		if(room.getRoomNum() != 0){
 		output  += room.toString() + "\n\n";
 		}
 	}

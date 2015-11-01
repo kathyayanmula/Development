@@ -1,0 +1,79 @@
+package week1;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.lang.Math;
+
+
+public class GuessingGame {
+	
+	private int answer;
+	private Random generator;
+	private int differential;
+	private boolean gameOver;
+	private int max;
+	private int maxGuessesAllowed;
+	private int numGuessesTaken;
+	
+	public GuessingGame(){
+		this.max = 0;
+		this.generator = new Random();
+		this.maxGuessesAllowed =0;
+	}
+	
+	public GuessingGame(int number){
+		this.max = number;
+		this.generator = new Random();
+		this.maxGuessesAllowed = 0;
+	}
+	
+	public void newGame(int maxGuessesAllowed){
+		this.maxGuessesAllowed = maxGuessesAllowed;
+		System.out.println("Welcome to the Guessing Game");
+		System.out.println("Enter the maximum number");
+		this.answer = generator.nextInt(101);
+		this.gameOver = false;
+		this.differential = max;
+		this.numGuessesTaken = 0;
+	}
+	
+	public String guess(int guessedNumber){
+		numGuessesTaken++;
+		if(numGuessesTaken >= maxGuessesAllowed)
+			this.gameOver = true;
+		String printOutput = "";
+		int currentDifferential = Math.abs(guessedNumber - answer);
+		System.out.println("Enter the number of guesses allowed:");
+		System.out.println("Enter your guess, number should be between 0 and " + max);
+
+		if(guessedNumber > answer && guessedNumber <= max){
+			printOutput = "Too High";
+		}
+		else if(guessedNumber < answer && guessedNumber >= 0){
+			printOutput = "Too Low";
+		}
+		else if(guessedNumber == answer){
+			printOutput = "Congratulations\n Would you like to play another game, enter Y for yes, N for no.";
+			this.gameOver = true;
+		}
+		else{
+			printOutput = "Given number is not within the max and min limits";
+		}
+		
+		if(currentDifferential != 0 && currentDifferential > differential){
+			printOutput += "\nGetting colder";
+		}
+		else if(currentDifferential != 0 && currentDifferential < differential){
+			printOutput += "\nGetting warmer";
+		}
+		
+		differential = Math.abs(guessedNumber - answer);
+		
+		return printOutput;
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
+
+}

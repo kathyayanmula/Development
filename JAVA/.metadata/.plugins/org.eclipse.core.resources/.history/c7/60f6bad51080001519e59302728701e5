@@ -1,0 +1,40 @@
+package week1;
+
+import java.util.Random;
+
+public class GuessingGame {
+	
+	private int answer;
+	private Random generator;
+	private int differential;
+	private boolean gameOver;
+	private int max;
+	private int maxGuessesAllowed;
+	private int numGuessesTaken;
+	
+	public GuessingGame(){
+		
+	}
+	
+	public GuessingGame(int number){
+		
+	}
+	
+	public static void newGame(){
+		
+	}
+	
+	public static void guess(){
+		
+	}
+	
+	public static void isGameOver(){
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

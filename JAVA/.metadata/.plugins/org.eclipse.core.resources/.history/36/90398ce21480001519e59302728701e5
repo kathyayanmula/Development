@@ -1,0 +1,43 @@
+package week1;
+
+import java.util.Random;
+
+public class GuessingGame {
+	
+	private int answer;
+	private Random generator;
+	private int differential;
+	private boolean gameOver;
+	private int max;
+	private int maxGuessesAllowed;
+	private int numGuessesTaken;
+	
+	public GuessingGame(){
+		this.max = 0;
+		this.generator = new Random();
+	}
+	
+	public GuessingGame(int number){
+		this.max = number;
+		this.generator = new Random(100);
+	}
+	
+	public static void newGame(){
+		System.out.println("Welcome to the Guessing Game");
+		System.out.println("Enter the maximum number");
+	}
+	
+	public static void guess(){
+		
+	}
+	
+	public static void isGameOver(){
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

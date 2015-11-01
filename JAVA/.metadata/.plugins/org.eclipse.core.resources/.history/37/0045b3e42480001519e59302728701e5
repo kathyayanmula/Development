@@ -1,0 +1,91 @@
+package week1;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.lang.Math;
+
+
+public class GuessingGame {
+	
+	private int answer;
+	private Random generator;
+	private int differential;
+	private boolean gameOver;
+	private int max;
+	private int maxGuessesAllowed;
+	private int numGuessesTaken;
+	
+	public GuessingGame(){
+		this.max = 0;
+		this.generator = new Random();
+		this.maxGuessesAllowed =0;
+		this.gameOver = false;
+	}
+	
+	public GuessingGame(int number){
+		this.max = number;
+		this.generator = new Random();
+		this.maxGuessesAllowed = 0;
+		this.gameOver = false;
+	}
+	
+	public void newGame(int maxGuessesAllowed){
+		this.maxGuessesAllowed = maxGuessesAllowed;
+		this.answer = generator.nextInt(max + 1);
+		this.gameOver = false;
+		this.differential = max;
+		this.numGuessesTaken = 0;
+	}
+	
+	public String guess(int guessedNumber){
+		numGuessesTaken++;
+		if(numGuessesTaken >= maxGuessesAllowed)
+			this.gameOver = true;
+		String printOutput = "";
+		int currentDifferential = Math.abs(guessedNumber - answer);
+		
+		
+
+		if(guessedNumber > answer && guessedNumber <= max){
+			printOutput = "Too High";
+		}
+		else if(guessedNumber < answer && guessedNumber >= 0){
+			printOutput = "Too Low";
+		}
+		else if(guessedNumber == answer){
+			printOutput = "Congratulations";
+			this.gameOver = true;
+		}
+		else{
+			printOutput = "Given number is not within the max and min limits";
+		}
+		
+		if(currentDifferential != 0 && currentDifferential > differential){
+			printOutput += "\nGetting colder";
+		}
+		else if(currentDifferential != 0 && currentDifferential < differential){
+			printOutput += "\nGetting warmer";
+		}
+		
+		differential = Math.abs(guessedNumber - answer);
+		
+		return printOutput;
+	}
+	
+	public boolean isGameOver(){
+		return gameOver;
+	}
+	
+	public int getMax(){
+		return this.max;
+	}
+	
+	public boolean getGameOver(){
+		return this.gameOver;
+	}
+	
+	public int getAnswer(){
+		return answer;
+	}
+
+}

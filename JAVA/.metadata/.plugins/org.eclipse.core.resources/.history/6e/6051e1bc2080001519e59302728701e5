@@ -1,0 +1,17 @@
+package week1;
+
+import java.util.Scanner;
+
+public class GuessingGameTester {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in); 
+		GuessingGame newGame;
+		int input = 0;
+		char choice;
+		while(true){
+			newGame = new GuessingGame();
+		}
+
+	}
+}

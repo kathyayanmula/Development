@@ -1,0 +1,28 @@
+package week1;
+
+import java.util.Scanner;
+
+public class GuessingGameTester {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in); 
+		GuessingGame newGuessGame;
+		int input = 0;
+		char choice;
+		while(true){
+			System.out.println("Welcome to the Guessing Game");
+			System.out.println("Enter the maximum number\n");
+			input = scanner.nextInt();
+			newGuessGame = new GuessingGame(input);
+			System.out.println("Enter the number of guesses allowed:\n");
+			input = scanner.nextInt();
+			newGuessGame.newGame(input);
+			System.out.println("Enter your guess, number should be between 0 and " + newGuessGame.getMax() + "\n");
+			input = scanner.nextInt();
+			newGuessGame.guess(input);
+			
+			
+		}
+
+	}
+}
